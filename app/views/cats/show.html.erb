@@ -1,0 +1,41 @@
+<h1><%= "#{@cat.name}"%> The Cats Information Page!</h1>
+<!-- 
+<h3>Name: <%#= "#{@cat.name}"%></h3>
+<h3>Birth date: <%#= "#{@cat.birth_date}"%></h3>
+<h3>Age: <%#= "#{@cat.age}"%></h3>
+<h3>Sex: <%#= "#{@cat.sex}"%></h3>
+<h3>Color: <%#= "#{@cat.color}"%></h3>
+<h3>Description: <%#= "#{@cat.description}"%></h3>
+-->
+
+<table>
+  <tr>
+    <td>Name:</td>
+    <td><%= @cat.name %></td>
+  </tr>
+  <tr>
+    <td>Birth Date:</td>
+    <td><%= @cat.birth_date %></td>
+  </tr>
+  <tr>
+    <td>Age:</td>
+    <td><%= @cat.age %></td>
+  </tr>
+  <tr>
+    <td>Sex:</td>
+    <td><%= @cat.sex %></td>
+  </tr>
+  <tr>
+    <td>Color:</td>
+    <td><%= @cat.color %></td>
+  </tr>
+  <tr>
+    <td>Description:</td>
+    <td><%= @cat.description %></td>
+  </tr>
+
+</table>
+
+<p><%= link_to("Back to Cats Index", cats_url) %>
+<br>
+<p><%= link_to("Edit Cat", edit_cat_url(@cat)) %>
