@@ -18,4 +18,4 @@
 # Catrentalrequest.create!(cat_id: 4, start_date: "2020/01/01", end_date: "2020/01/08", status: "APPROVED")
 # Catrentalrequest.create!(cat_id: 5, start_date: "2020/01/08", end_date: "2020/01/19", status: "APPROVED")
 # Catrentalrequest.create!(cat_id: 6, start_date: "2020/01/19", end_date: "2020/01/29", status: "APPROVED")
-Catrentalrequest.create!(cat_id: 1, start_date: "2020/01/13", end_date: "2020/02/03", status: "APPROVED")
+# Catrentalrequest.create!(cat_id: 1, start_date: "2020/01/13", end_date: "2020/02/03", status: "APPROVED")

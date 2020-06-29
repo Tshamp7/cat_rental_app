@@ -6,6 +6,7 @@ class CatsController < ApplicationController
 
     def show
       @cat = Cat.find(params[:id])
+      @catrentalrequests = Catrentalrequest.where(cat_id: @cat.id).order('start_date ASC')
       render :show
     end
 

@@ -33,6 +33,26 @@
     <td>Description:</td>
     <td><%= @cat.description %></td>
   </tr>
+  </table>
+  <table>
+    <tr>
+        <td><strong>Cat Rental Requests</strong></td>
+    </tr>
+    <tr>
+      <td><strong>Start Date</strong></td>
+      <td><strong>End Date</strong></td>
+    </tr>
+    <% @catrentalrequests.each do |req| %>
+    <tr>
+        <td>
+            <li><%= req.start_date %></li>
+        </td>
+        <td>
+            <li><%= req.end_date %></li>
+        </td>
+    </tr>
+    <% end %>
+
 
 </table>
 
