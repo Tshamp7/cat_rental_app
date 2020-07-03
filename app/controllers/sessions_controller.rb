@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_credentials(params[:user][:username], params[:user][:password])
+    user = User.find_by_credentials(params[:username], params[:password])
     if user.nil?
       flash.now[:errors] = ["Incorrect username and/or password"]
       render :new
@@ -15,5 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    logout_user!
+    render :new
   end
 end

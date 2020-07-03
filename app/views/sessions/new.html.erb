@@ -1,15 +1,17 @@
 <h1>Login</h1>
 
-<%= form_tag session_path do %>
+<%= form_tag session_path  do %>
 <%= label_tag :username %>
 <%= text_field_tag :username %>
 <br>
 <%= label_tag :password %>
 <%= password_field_tag :password %>
 <br>
-<%= submit_tag "Log In" %>
+<%= submit_tag "Sign In" %>
  
 <% end %>
+<br>
+<p><%= link_to "Create an account!", signup_path %></p>
 
 <!-- HTML form version can be seen below, this method would be used with older rails versions -->
 <!-- 
