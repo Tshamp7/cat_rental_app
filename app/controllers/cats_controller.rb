@@ -6,6 +6,7 @@ class CatsController < ApplicationController
 
     def show
       @cat = Cat.find(params[:id])
+      @owner = @cat.owner.username
       @catrentalrequests = Catrentalrequest.where(cat_id: @cat.id).order('start_date ASC')
       render :show
     end
@@ -17,6 +18,7 @@ class CatsController < ApplicationController
 
     def create
       @cat = Cat.new(cat_params)
+      @cat.user_id = current_user.id
 
       if @cat.valid?
         @cat.save
@@ -44,7 +46,7 @@ class CatsController < ApplicationController
     private
       
       def cat_params
-        params.require(:cat).permit(:name, :birth_date, :sex, :color, :description)
+        params.require(:cat).permit(:name, :birth_date, :sex, :color, :description, :user_id)
       end
 
 
