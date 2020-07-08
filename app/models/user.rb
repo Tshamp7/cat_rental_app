@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
   has_many :cats,
   class_name: 'Cat',
-  primary_key: :user_id,
-  foreign_key: :id,
+  foreign_key: :user_id,
+  primary_key: :id,
   dependent: :destroy
 
   def self.find_by_credentials(username, password)

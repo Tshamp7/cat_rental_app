@@ -29,18 +29,30 @@ class CatsController < ApplicationController
     end
 
     def edit
-      @cat = Cat.find(params[:id])
-      render :edit
+      @cat = current_user.cats.where("id = ?", params[:id]).first
+      if @cat.nil?
+        redirect_to cats_url
+      else
+        render :edit
+      end
     end
 
     def update
-      @cat = Cat.find(params[:id])
+      @cat = current_user.cats.where("id = ?", params[:id]).first
 
       if @cat.update_attributes(cat_params)
         redirect_to cat_url(@cat)
       else
         render :edit
       end
+    end
+
+    def destroy
+      @cat = Cat.find(params[:id])
+      if @cat.destroy
+        flash[:success] = "Cat deleted!"
+      end
+      redirect_to cats_url
     end
 
     private

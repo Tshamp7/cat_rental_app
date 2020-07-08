@@ -8,12 +8,13 @@ class Cat < ApplicationRecord
   validates :sex, presence: true, inclusion: { in: ["M", "F"] }
   validates :description, presence: true
 
+
   def age
     Date.today.year - self.birth_date.year
   end
 
   has_many :rentals,
-  class_name: 'CatRentalRequests',
+  class_name: 'Catrentalrequest',
   foreign_key: :cat_id,
   primary_key: :id,
   dependent: :destroy
