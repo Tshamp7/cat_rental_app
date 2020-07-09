@@ -5,5 +5,5 @@
 <%= link_to("Back to Cats Index", cats_url) %>
 <br>
 <% if current_user == @cat.owner %>
-<%= link_to("Destroy Cat", cat_url(@cat), method: "delete", confirm: "Are you sure you want to delete this cat?") %>
+  <%= link_to("Destroy Cat", cat_url(@cat), method: "delete", data: { confirm: "Are you sure you want to delete this cat?"}) %>
 <% end %>

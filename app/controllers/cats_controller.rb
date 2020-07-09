@@ -29,7 +29,8 @@ class CatsController < ApplicationController
     end
 
     def edit
-      @cat = current_user.cats.where("id = ?", params[:id]).first
+      @cat = ensure_owns_cats
+      @action = "update"
       if @cat.nil?
         redirect_to cats_url
       else
@@ -38,8 +39,8 @@ class CatsController < ApplicationController
     end
 
     def update
-      @cat = current_user.cats.where("id = ?", params[:id]).first
-
+      @cat = ensure_owns_cats
+      
       if @cat.update_attributes(cat_params)
         redirect_to cat_url(@cat)
       else
@@ -50,15 +51,21 @@ class CatsController < ApplicationController
     def destroy
       @cat = Cat.find(params[:id])
       if @cat.destroy
-        flash[:success] = "Cat deleted!"
+        redirect_to cats_url, notice: 'Cat was destroyed'
+      else
+        flash[:error] = 'Something went wrong...'
       end
-      redirect_to cats_url
+      
     end
 
     private
       
       def cat_params
         params.require(:cat).permit(:name, :birth_date, :sex, :color, :description, :user_id)
+      end
+
+      def ensure_owns_cats
+        current_user.cats.where("id = ?", params[:id]).first
       end
 
 

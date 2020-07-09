@@ -1,9 +1,8 @@
 <h1>Create a new Cat Rental Request</h1>
 
 <%= form_for @catrentalrequest do |f| %>
-
   <%= f.label :cat_id %>
-  <%= f.select :cat_id, @cat_ids_for_form, prompt: "--Choose a Cat Id--" %>
+  <%= f.select :cat_id, @cat_ids_for_form, prompt: "--Choose a Cat--" %>
 <br>
   <%= f.label :start_date %>
   <%= f.text_field :start_date, prompt: "YYYY/MM/DD" %>
@@ -14,3 +13,5 @@
   <%= f.submit %>
 
 <% end %>
+
+<%= link_to("Back to Cats Index", cats_url )%>

@@ -1,6 +1,10 @@
 <h1><%= "#{@cat.name}"%> The Cats Information Page!</h1>
 
 <table>
+    <tr>
+    <td>Id:</td>
+    <td><%= @cat.id %></td>
+  </tr>
   <tr>
     <td>Name:</td>
     <td><%= @cat.name %></td>
@@ -37,6 +41,7 @@
     <tr>
       <td><strong>Start Date</strong></td>
       <td><strong>End Date</strong></td>
+      <td><strong>Status</strong></td>
     </tr>
     <% @catrentalrequests.each do |req| %>
     <tr>
@@ -45,6 +50,15 @@
         </td>
         <td>
             <li><%= req.end_date %></li>
+        </td>
+         <td>
+            <li><%= req.status %></li>
+        </td>
+        <td>
+          <% if @owner == current_user.username %>
+            <%= link_to("Approve", approve_catrentalrequest_url(req), method: :post) %>
+            <%= link_to("Deny", deny_catrentalrequest_url(req), method: :post)%>
+          <% end %>
         </td>
     </tr>
     <% end %>
@@ -55,3 +69,5 @@
 <p><%= link_to("Back to Cats Index", cats_url) %>
 <br>
 <p><%= link_to("Edit Cat", edit_cat_url(@cat)) %>
+<br>
+<%= link_to("Create a Cat Rental Request", new_catrentalrequest_url, cats_id: @cat.id) %>

@@ -20,12 +20,26 @@ class Catrentalrequest < ApplicationRecord
       overlapping_requests.where("status = 'APPROVED'")
     end
 
+    def overlapping_pending_request
+      overlapping_requests.where("status = 'PENDING'")
+    end
+
     def approve!
       if does_not_overlap_approved_request && start_and_end_valid?
-        self.status = 'APPROVED'
-      else
-        self.status = 'DENIED'
+        raise 'not pending' unless self.pending?
+        transaction do
+          self.status = 'APPROVED'
+          self.save!
+          overlapping_pending_request.each do |req|
+            req.update!(status: "DENIED")
+          end
+        end
       end
+    end
+
+    def deny!
+      self.status = "DENIED"
+      self.save!
     end
 
     def does_not_overlap_approved_request
@@ -35,6 +49,25 @@ class Catrentalrequest < ApplicationRecord
 
     def start_and_end_valid?
       self.start_date < self.end_date ? true : false
+    end
+
+    def current_cat
+      self.cat
+    end
+
+    def pending?
+      return true if status == "PENDING"
+      false
+    end
+
+    def denied?
+      return true if status == "DENIED"
+      false
+    end
+
+    def approved?
+      return true if status == "APPROVED"
+      false
     end
 
 end

@@ -3,7 +3,11 @@
   <%= f.text_field :name %>
     <br>
   <%= f.label :birth_date %>
-  <%= f.text_field :birth_date, value: 'yyyy/mm/dd' %>
+  <% if @action == "update" %>
+    <%= f.text_field :birth_date %>
+  <% else %>
+    <%= f.text_field :birth_date, value: 'yyyy/mm/dd' %>
+  <% end %>
     <br>
   <%= f.label :sex %>
   <%= f.radio_button :sex, "M" %>
