@@ -70,4 +70,8 @@ class Catrentalrequest < ApplicationRecord
       false
     end
 
+    def requesting_username
+      user = User.find(self.user_id).username
+    end
+
 end
