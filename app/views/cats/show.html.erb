@@ -38,29 +38,33 @@
     <tr>
         <td><strong>Cat Rental Requests</strong></td>
     </tr>
+  <% if @catrentalrequests.empty? %>
+    <tr>
+      <td>This cat has no rental requests</td>
+    </tr>
+  <% else %>
     <tr>
       <td><strong>Requesting User</strong></td>
       <td><strong>Start Date</strong></td>
       <td><strong>End Date</strong></td>
       <td><strong>Status</strong></td>
     </tr>
-    <% @catrentalrequests.each do |req| %>
-    <tr> 
-        <% unless req.user_id.nil? %>
-        <td>
-            <li><%= req.requesting_username %></li>
-        </td>
+      <% @catrentalrequests.each do |req| %>
+      <tr> 
+            <td>
+                <li><%= req.requesting_username %></li>
+            </td>
+            <td>
+                <li><%= req.start_date %></li>
+            </td>
+            <td>
+                <li><%= req.end_date %></li>
+            </td>
+            <td>
+                <li><%= req.status %></li>
+            </td>
+            <td>
         <% end %>
-        <td>
-            <li><%= req.start_date %></li>
-        </td>
-        <td>
-            <li><%= req.end_date %></li>
-        </td>
-         <td>
-            <li><%= req.status %></li>
-        </td>
-        <td>
           <% if @owner == current_user.username %>
             <%= link_to("Approve", approve_catrentalrequest_url(req), method: :post) %>
             <%= link_to("Deny", deny_catrentalrequest_url(req), method: :post)%>

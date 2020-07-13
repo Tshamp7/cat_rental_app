@@ -71,7 +71,7 @@ class Catrentalrequest < ApplicationRecord
     end
 
     def requesting_username
-      user = User.find(self.user_id).username
+      User.find(self.user_id).username
     end
 
 end
